@@ -7,7 +7,7 @@ const Home = () => {
     const [token,setToken] = useContext(store)
     // const [time, settime] = useState(false)
     const [value,setValue]=useState("")
-    let [curr, setCurr] = useState(5);
+    let [curr, setCurr] = useState(600);
     const logout=()=>{
         axios.post("http://localhost:5000/home").then(res =>{
             alert("submited successfully")
