@@ -2,13 +2,20 @@ import { useContext,useEffect, useState } from 'react';
 import { store } from './App';
 
 import { Navigate } from 'react-router-dom';
+import axios from 'axios';
 const Home = () => {
     const [token,setToken] = useContext(store)
-    const [time, settime] = useState(false)
+    // const [time, settime] = useState(false)
     const [value,setValue]=useState("")
-    let [curr, setCurr] = useState(10);
+    let [curr, setCurr] = useState(5);
     const logout=()=>{
-        setToken({...token,tok:false})
+        axios.post("http://localhost:5000/home").then(res =>{
+            alert("submited successfully")
+
+            setToken({...token,tok:false})
+            
+        })
+       
     } 
 
     useEffect(() => {
@@ -31,19 +38,14 @@ const Home = () => {
     }
     if (sec <= 0) {
         sec = "00";
-        if (min <= 0) {
+        if (min == 0) {
             min = "00";
-            settime(true)
+            // alert("time")
+            logout()
         }
     }
-    if(time){
-        // axios post 
-        
-        // 
-        setToken({...token,tok:false})
-
-    }
-    else if(token.tok)
+  
+    if(token.tok)
   return (
     <div>
         <ul class="nav nav-pills nav-fill">
@@ -73,7 +75,7 @@ const Home = () => {
     </div>
   )
   else
-    return <Navigate to='/login' />
+    return <Navigate to='/' />
 }
 
 export default Home
