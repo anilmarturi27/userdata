@@ -15,6 +15,7 @@ const Login = () => {
           email :'',
           phno :''
         }
+        
       )
       const [anil,setanil]=useState(false)
       const {username,email,phno} = data
